@@ -1,3 +1,5 @@
+/* --- БАЗОВЫЕ СТИЛИ (ДЛЯ ПК) --- */
+
 .root {
   display: flex;
   flex-direction: column;
@@ -6,10 +8,13 @@
   min-height: 100vh;
 
   --text-color: red;
-
   --background-color: green;
   background-color: var(--background-color);
-  transition: color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  
+  /* Добавим overflow-x, чтобы не появлялась прокрутка влево-вправо */
+  overflow-x: hidden;
+  position: relative;
 }
 
 .congratulation {
@@ -17,11 +22,14 @@
   font-size: 100px;
   transition: color 0.2s ease;
   text-align: center;
+  margin: 0;
+  line-height: 1.1; /* Чтобы строки не слипались и не разлетались */
 }
 
 .phase {
   font-size: 70px;
   text-align: center;
+  margin: 20px 0;
 }
 
 .easter-egg {
@@ -30,6 +38,7 @@
   left: 10px;
   cursor: pointer;
   font-weight: bold;
+  opacity: 0.5; /* Сделаем чуть прозрачнее, чтобы не мешало */
 }
 
 /* Стили для режима комикса */
@@ -37,14 +46,17 @@
   background-color: white;
   justify-content: flex-start; 
   height: auto;
+  min-height: 100vh;
   padding-top: 20px;
+  padding-bottom: 80px; /* Отступ снизу, чтобы кнопка не закрывала последнюю картинку */
 }
 
 .comics-page {
   width: 800px;
-  max-width: 90%;
+  max-width: 95%; /* Чуть увеличим ширину на экранах */
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 button {
@@ -54,7 +66,53 @@ button {
   transform: translateY(-50%);
   z-index: 1000;
   
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 15px 25px;
+  font-size: 18px;
   cursor: pointer;
+  
+  background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный фон */
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* --- АДАПТИВНОСТЬ (ДЛЯ ТЕЛЕФОНОВ) --- */
+/* Применяется, если ширина экрана меньше 768px */
+@media screen and (max-width: 768px) {
+
+  /* 1. Уменьшаем шрифт поздравления */
+  .congratulation {
+    font-size: 40px; /* Было 100px */
+    padding: 0 10px;
+    word-break: break-word; /* Переносить длинные слова, если не влезают */
+  }
+
+  /* 2. Уменьшаем шрифт подписи */
+  .phase {
+    font-size: 30px; /* Было 70px */
+    padding: 0 10px;
+  }
+
+  /* 3. Кнопку переносим вниз экрана, чтобы не мешала читать */
+  button {
+    top: auto;      /* Отменяем вертикальное центрирование */
+    bottom: 20px;   /* Прижимаем к низу */
+    left: 50%;      /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    width: 90%;     /* Делаем кнопку широкой, чтобы удобно жать пальцем */
+    background-color: white;
+  }
+
+  /* 4. Картинки комикса на всю ширину */
+  .comics-page {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0; /* Уберем отступы, чтобы был цельный комикс */
+  }
+  
+  /* 5. Убираем лишние отступы у фона */
+  .comics-background {
+    padding-top: 0;
+  }
 }
