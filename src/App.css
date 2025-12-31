@@ -1,0 +1,60 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  min-height: 100vh;
+
+  --text-color: red;
+
+  --background-color: green;
+  background-color: var(--background-color);
+  transition: color 0.2s ease;
+}
+
+.congratulation {
+  color: var(--text-color);
+  font-size: 100px;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.phase {
+  font-size: 70px;
+  text-align: center;
+}
+
+.easter-egg {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Стили для режима комикса */
+.comics-background {
+  background-color: white;
+  justify-content: flex-start; 
+  height: auto;
+  padding-top: 20px;
+}
+
+.comics-page {
+  width: 800px;
+  max-width: 90%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+button {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
